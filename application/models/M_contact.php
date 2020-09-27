@@ -46,5 +46,12 @@ class M_contact extends CI_Model {
 		
 	}
 
+	public function select_whatsapp() {
+		$sql = "SELECT * FROM contact WHERE  LOWER(jenis_contact)='whatsapp'";
+		$data = $this->db->query($sql);
+
+		return $data->row();
+	}
+
 	
 }

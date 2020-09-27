@@ -7,8 +7,8 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="<?= base_url()?>" class="nav-link">Halaman Utama</a></li>
-	          <li class="nav-item dropdown">
+	          <li class="nav-item <?php if($halaman=='Halaman Utama') echo'active'?>"><a href="<?= base_url()?>" class="nav-link">Halaman Utama</a></li>
+	          <li class="nav-item dropdown <?php if($halaman=='Katalog') echo'active'?>">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Katalog Produk</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="<?= base_url('Katalog')?>">Semua Produk</a>
@@ -18,7 +18,7 @@
               </div>
             </li>
 	          
-	          <li class="nav-item"><a href="<?= base_url('Kontak')?>" class="nav-link">Kontak</a></li>
+	          <li class="nav-item <?php if($halaman=='Kontak') echo'active'?>"><a href="<?= base_url('Kontak')?>" class="nav-link">Kontak</a></li>
 	          
 
 	        </ul>

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Halaman_Utama extends CI_Controller {
+class Kontak extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,7 +20,7 @@ class Halaman_Utama extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('M_produk');
+		// $this->load->model('M_produk');
 		$this->load->model('M_kategori');
 		$this->load->model('M_contact');
 		
@@ -30,17 +30,17 @@ class Halaman_Utama extends CI_Controller {
 	public function index()
 	{
 		// $data['userdata'] = $this->userdata;
-		$data['halaman']="Halaman Utama";
-		$data['data_produk_new'] = $this->M_produk->select_new();
+		$data['halaman']="Kontak";
+		// $data['data_produk_new'] = $this->M_produk->select_new();
 
 		// $data['total_produk'] = $this->M_produk->count_all();
 		$data['data_kategori'] = $this->M_kategori->select_all();
-		$data['whatsapp'] = $this->M_contact->select_whatsapp();
+		$data['data_contact'] = $this->M_contact->select_all();
 		// $data['total_produk_kosong'] = $this->M_produk->count_stok_kosong();
 
 		$this->load->view('template/header.php');
 		$this->load->view('template/navbar.php', $data);
-		$this->load->view('e-commerce/halaman_utama', $data);
+		$this->load->view('e-commerce/kontak.php', $data);
 		$this->load->view('template/footer.php');	
 		$this->load->view('template/script.php');
 	}

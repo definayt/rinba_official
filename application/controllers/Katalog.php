@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Halaman_Utama extends CI_Controller {
+class Katalog extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -30,18 +30,24 @@ class Halaman_Utama extends CI_Controller {
 	public function index()
 	{
 		// $data['userdata'] = $this->userdata;
-		$data['halaman']="Halaman Utama";
-		$data['data_produk_new'] = $this->M_produk->select_new();
+		$data['halaman']="Katalog";
+		$data['data_produk'] = $this->M_produk->select_limit();
+		$data['total_produk'] = $this->M_produk->count_all();
 
-		// $data['total_produk'] = $this->M_produk->count_all();
 		$data['data_kategori'] = $this->M_kategori->select_all();
 		$data['whatsapp'] = $this->M_contact->select_whatsapp();
-		// $data['total_produk_kosong'] = $this->M_produk->count_stok_kosong();
+
+		$session = [
+					'page_katalog' => "1"
+				];
+		$this->session->set_userdata($session);
 
 		$this->load->view('template/header.php');
 		$this->load->view('template/navbar.php', $data);
-		$this->load->view('e-commerce/halaman_utama', $data);
+		$this->load->view('e-commerce/katalog.php', $data);
 		$this->load->view('template/footer.php');	
 		$this->load->view('template/script.php');
 	}
+
+
 }

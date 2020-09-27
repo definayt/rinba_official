@@ -9,6 +9,13 @@ class M_produk extends CI_Model {
 		return $data->result();
 	}
 
+	public function select_limit() {
+		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ORDER BY nama_produk ASC LIMIT 12";
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 	public function count_all() {
 		$sql = "SELECT id_produk FROM produk";
 		$data = $this->db->query($sql);
@@ -61,6 +68,13 @@ class M_produk extends CI_Model {
 
 		return $this->db->affected_rows();
 		
+	}
+
+	public function select_new() {
+		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ORDER BY id_produk DESC LIMIT 6";
+		$data = $this->db->query($sql);
+
+		return $data->result();
 	}
 
 	
