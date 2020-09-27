@@ -49,12 +49,18 @@
         <div class="row">
           
           <!-- /.col -->
-          <div class="col-4">
+          <div class="input-group mb-3">
             <button type="submit" class="btn btn-primary btn-block">Login</button>
           </div>
-          <!-- /.col -->
         </div>
+          <!-- /.col -->
       </form>
+      <div class="row">
+      <div class="input-group mb-3">
+            <a type="button" class="btn btn-success btn-block" href="<?= base_url()?>">Kembali ke Halaman Utama</a>
+      </div>
+        </div>
+
 
       <!-- /.social-auth-links -->
 
