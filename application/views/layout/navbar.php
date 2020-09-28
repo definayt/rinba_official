@@ -24,8 +24,8 @@
         </a>
 
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-address-card mr-2"></i> Profil
+          <a href="<?= base_url('Admin/edit_password')?>" class="dropdown-item">
+            <i class="fas fa-key mr-2"></i> Ubah Password
           </a>
           <div class="dropdown-divider"></div>
           <a href="<?= base_url('Auth/logout')?>" data-toggle="modal" data-target="#modal_logout" class="dropdown-item">

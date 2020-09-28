@@ -22,6 +22,7 @@ class Admin extends AUTH_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_admin');
+		$this->load->model('M_petugas');
 		
 		$this->load->helper(array('url'));
 	}
@@ -135,6 +136,55 @@ class Admin extends AUTH_Controller {
 		} else {
 			$this->session->set_flashdata('flash_data', 'Password Admin Gagal direset');
 			redirect('Admin');
+		}
+	}
+
+	public function edit_password()
+	{
+		$data['userdata'] = $this->userdata;
+		$data['page']="";
+		
+		$this->load->view('layout/header.php');
+		$this->load->view('layout/navbar.php', $data);
+		$this->load->view('layout/sidebar.php', $data);
+		$this->load->view('edit_password.php', $data);
+		
+		$this->load->view('layout/footer.php');	
+
+	}
+
+	public function proses_edit_password(){		
+		$this->form_validation->set_rules('pass_lama', 'Password Saat Ini', 'trim|required');
+		$this->form_validation->set_rules('pass_baru', 'Password Baru', 'trim|required');
+		$this->form_validation->set_rules('pass_konfirmasi', 'Konfirmasi Password', 'trim|required');
+
+		if ($this->form_validation->run() == TRUE) {
+			if (md5($this->input->post('pass_lama')) == $this->userdata->password) {
+				if ($this->input->post('pass_baru') != $this->input->post('pass_konfirmasi')) {
+					$this->session->set_flashdata('flash_data', 'Password Baru dan Konfirmasi Password harus sama');
+					redirect('Admin/edit_password');
+				} else {
+					$data = [
+						'password' => md5($this->input->post('pass_baru'))
+					];
+
+					$result = $this->M_petugas->updatePassword($data, $this->userdata->id_petugas);
+					if ($result > 0) {
+						$this->updateProfil();
+						$this->session->set_flashdata('flash_data', 'Password Berhasil diubah');
+						redirect('Dashboard');
+					} else {
+						$this->session->set_flashdata('flash_data', 'Password Gagal diubah');
+						redirect('Admin/edit_password');
+					}
+				}
+			} else {
+				$this->session->set_flashdata('flash_data', 'Password Salah');
+				redirect('Admin/edit_password');
+			}
+		} else {
+			$this->session->set_flashdata('flash_data', 'Seluruh isian pada form ubah password harus Anda lengkapi!');
+			redirect('Admin/edit_password');
 		}
 	}
 }

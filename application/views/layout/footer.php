@@ -131,4 +131,32 @@
         document.getElementById('upload_image1').src="";
         document.getElementById('upload_image2').src="";
       }
+
+       function show_password(){
+          var password = document.getElementById('pass_lama');
+          if (password.type === "password") {
+            password.type = "text"
+          }
+          else{
+            password.type = "password";
+          }
+        }
+        function show_password2(){
+          var password = document.getElementById('pass_baru');
+          if (password.type === "password") {
+            password.type = "text"
+          }
+          else{
+            password.type = "password";
+          }
+        }
+        function show_password3(){
+          var password = document.getElementById('pass_konfirmasi');
+          if (password.type === "password") {
+            password.type = "text"
+          }
+          else{
+            password.type = "password";
+          }
+        }
     </script>

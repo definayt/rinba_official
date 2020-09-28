@@ -18,5 +18,13 @@ class M_petugas extends CI_Model {
 		}
 	}
 
+	public function updatePassword($data, $id) {
+		$sql = "UPDATE petugas SET password='" .$data['password'] ."' WHERE id_petugas='" .$id ."'";
+
+		$this->db->query($sql);
+
+		return $this->db->affected_rows();
+	}
+
 	
 }
