@@ -22,6 +22,7 @@ class Kategori extends AUTH_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('M_kategori');
+		$this->load->model('M_produk');
 		
 		$this->load->helper(array('url'));
 	}
@@ -81,14 +82,19 @@ class Kategori extends AUTH_Controller {
 	}
 
 	public function delete($id_kategori){
-		$result = $this->M_kategori->delete($id_kategori);
-		
-		if ($result > 0) {
-			$this->session->set_flashdata('flash_data', 'Data Kategori Berhasil dihapus');
+		if($this->M_produk->select_by_id_kategori($id_kategori) > 0){
+			$this->session->set_flashdata('flash_data', 'Anda Tidak dapat menghapus kategori ini karena kategori ini memiliki produk');
 			redirect('Kategori');
-		} else {
-			$this->session->set_flashdata('flash_data', 'Data Kategori Gagal dihapus');
-			redirect('Kategori');
+		}else{
+			$result = $this->M_kategori->delete($id_kategori);
+			
+			if ($result > 0) {
+				$this->session->set_flashdata('flash_data', 'Data Kategori Berhasil dihapus');
+				redirect('Kategori');
+			} else {
+				$this->session->set_flashdata('flash_data', 'Data Kategori Gagal dihapus');
+				redirect('Kategori');
+			}	
 		}
 	}
 }

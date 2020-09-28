@@ -1,6 +1,6 @@
  <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="<?= base_url('Dashboard')?>" class="brand-link">
+    <a href="<?= base_url()?>" class="brand-link" target="_blank">
       <img src="<?= base_url()?>/assets/dist/img/Rinba_Official.png" alt="Rinba Official Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Rinba Official</span>
     </a>

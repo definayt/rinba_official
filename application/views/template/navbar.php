@@ -13,7 +13,7 @@
               <div class="dropdown-menu" aria-labelledby="dropdown04">
               	<a class="dropdown-item" href="<?= base_url('Katalog')?>">Semua Produk</a>
               	<?php foreach($data_kategori as $kategori){ ?>
-	              	<a class="dropdown-item" href="<?= base_url('Katalog/kategori/'.$kategori->nama_kategori)?>"><?= $kategori->nama_kategori?></a>
+	              	<a class="dropdown-item" href="<?= base_url('Katalog/kategori/'.$kategori->id_kategori)?>"><?= $kategori->nama_kategori?></a>
             	<?php }?>
               </div>
             </li>

@@ -11,6 +11,50 @@
 <script src="<?= base_url()?>assets/e-commerce/js/jquery.animateNumber.min.js"></script>
 <script src="<?= base_url()?>assets/e-commerce/js/bootstrap-datepicker.js"></script>
 <script src="<?= base_url()?>assets/e-commerce/js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="<?= base_url()?>assets/e-commerce/js/google-map.js"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="<?= base_url()?>assets/e-commerce/js/google-map.js"></script> -->
 <script src="<?= base_url()?>assets/e-commerce/js/main.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+
+<script type="text/javascript">
+	
+$(document).ready(function(){
+	$("#id_kategori").change(function(e){
+		var id_kategori = $("#id_kategori").val();
+		var urutkan = $("#urutkan").val();
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('Katalog/filter'); ?>",
+			data: {id_kategori: id_kategori, urutkan: urutkan},
+			
+			success : function(data){
+				// MyTable.fnDestroy();
+				$('#daftar_produk').html(data);
+				// refresh();
+			},
+			error: function(data){
+
+			}
+		});
+	});
+
+	$("#urutkan").change(function(e){
+		var id_kategori = $("#id_kategori").val();
+		var urutkan = $("#urutkan").val();
+		$.ajax({
+			method: "POST",
+			url: "<?php echo base_url('Katalog/filter'); ?>",
+			data: {id_kategori: id_kategori, urutkan: urutkan},
+			
+			success : function(data){
+				// MyTable.fnDestroy();
+				$('#daftar_produk').html(data);
+				// refresh();
+			},
+			error: function(data){
+
+			}
+		});
+	});
+});
+</script>

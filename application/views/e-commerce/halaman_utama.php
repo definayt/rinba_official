@@ -44,19 +44,26 @@
     					<div class="item">
     						<div class="col-sm col-md-6 col-lg ftco-animate">
 			    				<div class="product">
-			    					<a href="#" class="img-prod"><img class="img-fluid" src="<?= base_url().'assets/dist/img/'.$produk->gambar_produk_1?>" alt="Gambar Produk"></a>
+			    					<a href="<?= base_url('Katalog/product_detail/'.$produk->id_produk)?>" class="img-prod"><img class="img-fluid" src="<?= base_url().'assets/dist/img/'.$produk->gambar_produk_1?>" alt="Gambar Produk">
+			    					<?php if($produk->stok == 0){ ?>
+				                            <span class="status">Stok Produk Tidak Tersedia</span>
+				                    <?php }  ?>
+				                    </a>
 			    					<div class="text py-3 px-3">
-			    						<h3><a href="#"><?= $produk->nama_produk?></a></h3>
+			    						<h3><a href="<?= base_url('Katalog/product_detail/'.$produk->id_produk)?>"><?= $produk->nama_produk?></a></h3>
 			    						<div class="d-flex">
 			    							<div class="pricing">
 					    						<p class="price"><span><?= rupiah($produk->harga) ?></span></p>
 					    					</div>
 					    					<div class="rating">
-				    							<p class="text-right">
-			    									<a type="button" target="_blank" href="https://api.whatsapp.com/send?phone=<?= $whatsapp->contact?>&text=Halo%20Admin,%20saya%20mau%20order <?= $produk->nama_produk?>" class="add-to-cart"><span>Order </span></a>
-				    								
-				    							</p>
-				    						</div>
+			                                    <p class="text-right">
+			                                        <?php if($produk->stok == 0) {?>
+			                                        <button type="button" data-toggle="modal" data-target="#modal_kosong" class="btn btn-primary"><span>Order </span></button>
+			                                        <?php } else {?>
+			                                        <a type="button" target="_blank" href="https://api.whatsapp.com/send?phone=<?= $whatsapp->contact?>&text=Halo%20Admin,%20saya%20mau%20order <?= $produk->nama_produk?>" class="btn btn-primary"><span>Order </span></a>
+			                                        <?php } ?>
+			                                    </p>
+			                                </div>
 				    					</div>
 				    					<hr>
 			    					</div>
@@ -82,6 +89,20 @@
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
 
+  <!-- Modals kosong -->  
+  <div class="modal fade" id="modal_kosong" tabindex="-1" role="dialog" aria-labelledby="largeModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="myModalLabel">Anda tidak dapat memesan produk ini karena stoknya sedang kosong!</h5>
+          </div>
+          <div class="modal-footer">
+                <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">OK</button>
+                
+            </div>
+        </div>
+      </div>
+  </div>
 
   
     

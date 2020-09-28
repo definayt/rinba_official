@@ -3,18 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_produk extends CI_Model {
 	public function select_all() {
-		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ORDER BY nama_kategori ASC, nama_produk ASC";
+		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ORDER BY  nama_produk ASC";
 		$data = $this->db->query($sql);
 
 		return $data->result();
 	}
 
-	public function select_limit() {
-		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ORDER BY nama_produk ASC LIMIT 12";
-		$data = $this->db->query($sql);
-
-		return $data->result();
-	}
 
 	public function count_all() {
 		$sql = "SELECT id_produk FROM produk";
@@ -24,7 +18,7 @@ class M_produk extends CI_Model {
 	}
 
 	public function select_stok_kosong() {
-		$sql = "SELECT nama_produk, nama_kategori, gambar_produk_1 FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori AND stok=0 ORDER BY nama_kategori ASC, nama_produk ASC";
+		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori AND stok=0 ORDER BY nama_kategori ASC, nama_produk ASC";
 		$data = $this->db->query($sql);
 
 		return $data->result();
@@ -43,6 +37,34 @@ class M_produk extends CI_Model {
 		$data = $this->db->query($sql);
 
 		return $data->row();
+	}
+
+	public function select_by_id_kategori($id_kategori) {
+		$sql = "SELECT id_produk FROM produk  WHERE id_kategori='{$id_kategori}'";
+		$data = $this->db->query($sql);
+
+		return $data->num_rows();
+	}
+
+	public function select_for_id_kategori($id_kategori) {
+		
+		
+		$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori AND produk.id_kategori=".$id_kategori." ORDER BY nama_produk ASC";
+		
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
+	public function select_by_id_kategori_filter($id_kategori, $urutkan) {
+		if($id_kategori == ""){
+			$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ".$urutkan;
+		}else{
+			$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori AND produk.id_kategori=".$id_kategori." ".$urutkan;
+		}
+		$data = $this->db->query($sql);
+
+		return $data->result();
 	}
 
 	public function insert($data) {
