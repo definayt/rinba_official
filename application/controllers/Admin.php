@@ -159,7 +159,7 @@ class Admin extends AUTH_Controller {
 		$this->form_validation->set_rules('pass_konfirmasi', 'Konfirmasi Password', 'trim|required');
 
 		if ($this->form_validation->run() == TRUE) {
-			if (md5($this->input->post('pass_lama')) == $this->userdata->password) {
+			if (md5($this->input->post('pass_lama')) == $this->M_admin->select_by_id($this->userdata->id_petugas)->password) {
 				if ($this->input->post('pass_baru') != $this->input->post('pass_konfirmasi')) {
 					$this->session->set_flashdata('flash_data', 'Password Baru dan Konfirmasi Password harus sama');
 					redirect('Admin/edit_password');

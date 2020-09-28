@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class M_petugas extends CI_Model {
 	public function login($username, $password) {
-		$this->db->select('*');
+		$this->db->select('id_petugas, username, nama_petugas');
 		$this->db->from('petugas');
 		$this->db->where('username', $username);
 		$this->db->where('password', md5($password));
