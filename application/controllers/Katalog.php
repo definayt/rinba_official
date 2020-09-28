@@ -36,7 +36,7 @@ class Katalog extends CI_Controller {
 		$data['data_kategori'] = $this->M_kategori->select_all();
 		$data['whatsapp'] = $this->M_contact->select_whatsapp();
 
-		
+		$data['kata_kunci'] = "";
 
 		$this->load->view('template/header.php');
 		$this->load->view('template/navbar.php', $data);
@@ -85,6 +85,7 @@ class Katalog extends CI_Controller {
 	{
 		$id_kategori = $this->input->post('id_kategori');
 		$urutkan = $this->input->post('urutkan');
+		$kata_kunci = $this->input->post('kata_kunci');
 
 		if($urutkan == "A-Z"){
 			$urutkan = 'ORDER BY nama_produk ASC';
@@ -97,7 +98,7 @@ class Katalog extends CI_Controller {
 		}
 
 		
-		$data['data_produk'] = $this->M_produk->select_by_id_kategori_filter($id_kategori, $urutkan);
+		$data['data_produk'] = $this->M_produk->select_by_kata_kunci($kata_kunci, $id_kategori, $urutkan);
 
 		
 		$data['whatsapp'] = $this->M_contact->select_whatsapp();
@@ -108,9 +109,69 @@ class Katalog extends CI_Controller {
 		
 		$this->load->view('e-commerce/filter_produk.php', $data);
 		$this->load->view('template/script.php');
+	}
 
+	public function pencarian()
+	{
+			$kata_kunci = $this->input->get('kata_kunci');
+		
+			$data['id_kategori'] = $this->input->get('id_kategori');
+			$data['urutkan'] = $this->input->get('urutkan');
+
+			$urutkan = 'ORDER BY nama_produk ASC';
+			if($data['urutkan'] == "A-Z"){
+				$urutkan = 'ORDER BY nama_produk ASC';
+			} else if($data['urutkan'] == "Z-A"){
+				$urutkan = 'ORDER BY nama_produk DESC';
+			} else if($data['urutkan'] == "1-10"){
+				$urutkan = 'ORDER BY harga ASC';
+			} else if($data['urutkan'] == "10-1"){
+				$urutkan = 'ORDER BY harga DESC';
+			}
+
+			$data['kata_kunci'] = $kata_kunci;
+			$data['halaman']="Katalog";
+			
+			$data['data_produk'] = $this->M_produk->select_by_kata_kunci($kata_kunci, $data['id_kategori'], $urutkan);
+			
+			$data['data_kategori'] = $this->M_kategori->select_all();
+			
+			$data['whatsapp'] = $this->M_contact->select_whatsapp();
+
+			$this->load->view('template/header.php');
+			$this->load->view('template/navbar.php', $data);
+			$this->load->view('e-commerce/pencarian.php', $data);
+			$this->load->view('template/footer.php');	
+			$this->load->view('template/script.php');
 		
 	}
 
+	public function pencarian_produk()
+	{
+		$kata_kunci = $this->input->get('kata_kunci');
+		if ($kata_kunci != ""){
+			$data['id_kategori'] = "";
+			
+			$data['urutkan'] = "A-Z";
+			$urutkan = 'ORDER BY nama_produk ASC';
 
+			$data['kata_kunci'] = $kata_kunci;
+			$data['halaman']="Katalog";
+			
+			$data['data_produk'] = $this->M_produk->select_by_kata_kunci($kata_kunci, $data['id_kategori'], $urutkan);
+			
+			$data['data_kategori'] = $this->M_kategori->select_all();
+			
+			$data['whatsapp'] = $this->M_contact->select_whatsapp();
+
+			$this->load->view('template/header.php');
+			$this->load->view('template/navbar.php', $data);
+			$this->load->view('e-commerce/pencarian.php', $data);
+			$this->load->view('template/footer.php');	
+			$this->load->view('template/script.php');
+		} else {
+			$this->session->set_flashdata('flash_msg', 'Kata Kunci Tidak Boleh Kosong!');
+			redirect('Halaman_Utama#search-box');
+		}
+	}
 }

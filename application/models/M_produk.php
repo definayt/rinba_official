@@ -56,6 +56,19 @@ class M_produk extends CI_Model {
 		return $data->result();
 	}
 
+	public function select_by_kata_kunci($kata_kunci, $id_kategori, $urutkan) {
+		if($id_kategori == ""){
+			$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori AND nama_produk LIKE '%".$kata_kunci."%' ".$urutkan;
+		}else{
+			$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori AND nama_produk LIKE '%".$kata_kunci."%' AND produk.id_kategori=".$id_kategori." ".$urutkan;
+		}
+
+		
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 	public function select_by_id_kategori_filter($id_kategori, $urutkan) {
 		if($id_kategori == ""){
 			$sql = "SELECT * FROM produk JOIN kategori WHERE produk.id_kategori=kategori.id_kategori ".$urutkan;

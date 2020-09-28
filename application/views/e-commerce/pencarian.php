@@ -9,6 +9,7 @@
       </div>
     </div>
     <br>
+
     <section class="" id="search-box">
         <div class="container-fluid">
           <div class="row d-flex justify-content-center py-1">
@@ -34,12 +35,12 @@
                     </select>
                 </div>
                  <div class="col-md-2">
-                     Urutkan
+                    Urutkan
                     <select name="urutkan" class="form-control" id="urutkan">
-                        <option class="form-control" value="A-Z">A-Z</option>
-                        <option class="form-control" value="Z-A">Z-A</option>
-                        <option value="1-10">Harga Terendah-Tertinggi</option>
-                        <option value="10-1">Harga Tertinggi-Terendah</option>
+                        <option class="form-control" value="A-Z" <?php if ($urutkan == "A-Z") echo "selected"; ?>>A-Z</option>
+                        <option class="form-control" value="Z-A" <?php if ($urutkan == "Z-A") echo "selected"; ?>>Z-A</option>
+                        <option value="1-10" <?php if ($urutkan == "1-10") echo "selected"; ?>>Harga Terendah-Tertinggi</option>
+                        <option value="10-1" <?php if ($urutkan == "10-1") echo "selected"; ?>>Harga Tertinggi-Terendah</option>
                     </select>
                 </div>
                 </form>
@@ -48,20 +49,21 @@
           </div>
         </div>
     </section>
+
 		<section class="ftco-section bg-light">
     	<div class="container-fluid">
             
     		<div class="row" id="daftar_produk">
                 <?php if($data_produk == NULL) {?>
 
-                  <div class="ftco-section container d-flex justify-content-center py-5">
-                    <div class="col-md-12 text-center heading-section ftco-animate">
-                        <h1 class="big">Not Found</h1>
-                      <h2>Produk yang Anda Cari Tidak Ditemukan</h2>
-                    </div>
-                  </div>
-            
-                <?php  } else{?> 
+                              <div class="ftco-section container d-flex justify-content-center py-5">
+                                <div class="col-md-12 text-center heading-section ftco-animate">
+                                    <h1 class="big">Not Found</h1>
+                                  <h2>Produk yang Anda Cari Tidak Ditemukan</h2>
+                                </div>
+                              </div>
+                        
+                                    <?php  } else{?> 
                 <?php foreach($data_produk as $produk) {?>
     			<div class="col-sm col-md-6 col-lg-3 ftco-animate" >
                     
@@ -93,7 +95,7 @@
     				</div>
                     
     			</div>
-                <?php  }}?>  
+                <?php } }?>  
     			
     		</div>
     		

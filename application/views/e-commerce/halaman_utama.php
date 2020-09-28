@@ -8,15 +8,15 @@
 		
 	<div class="hero-wrap js-fullheight" style="background-image: url('<?= base_url()?>assets/dist/img/Rinba_Official.png'); max-height: 500px;"></div>
 
-   	<section class="ftco-section">
+   	<section class="ftco-section" id="search-box">
 	    <div class="container">
-	      <div class="row d-flex justify-content-center py-5">
+	      <div class="row d-flex justify-content-center mb-3 pb-3">
 	        <div class="col-md-7 text-center heading-section ftco-animate">
 	        	<h1 class="big">Pencarian</h1>
 	          <h2>Pencarian Barang di Katalog</h2>
 	          <div class="row d-flex justify-content-center mt-5">
 	            <div class="col-md-12">
-	              <form action="#" class="subscribe-form" method="GET">
+	              <form action="<?= base_url('Katalog/pencarian_produk')?>" class="subscribe-form" method="GET">
 	                <div class="form-group d-flex">
 	                  <input type="text" class="form-control" name="kata_kunci" placeholder="Masukkan kata kunci pencarian barang">
 	                  <input type="submit" value="Cari" class="submit px-3">
@@ -29,7 +29,7 @@
 	    </div>
     </section>
     
-    <section class="ftco-section ftco-product">
+    <section class="ftco ftco-product">
     	<div class="container">
     		<div class="row justify-content-center mb-3 pb-3">
           <div class="col-md-12 heading-section text-center ftco-animate">
