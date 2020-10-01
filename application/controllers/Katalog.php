@@ -83,9 +83,9 @@ class Katalog extends CI_Controller {
 
 	public function filter()
 	{
-		$id_kategori = $this->input->post('id_kategori');
-		$urutkan = $this->input->post('urutkan');
-		$kata_kunci = $this->input->post('kata_kunci');
+		$id_kategori = $this->input->get('id_kategori');
+		$urutkan = $this->input->get('urutkan');
+		$kata_kunci = $this->input->get('kata_kunci');
 
 		if($urutkan == "A-Z"){
 			$urutkan = 'ORDER BY nama_produk ASC';
