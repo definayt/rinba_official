@@ -6,7 +6,7 @@
     
     <!-- END nav -->
 		
-	<div class="hero-wrap js-fullheight" style="background-image: url('<?= base_url()?>assets/dist/img/Rinba_Official.png'); max-height: 500px;"></div>
+	<div class="hero-wrap hero-bread" style="background-image: url('<?= base_url()?>assets/dist/img/bg-rinba.png');"></div>
 
    	<section class="ftco-section" id="search-box">
 	    <div class="container">

@@ -40,10 +40,14 @@ $(document).ready(function(){
 			method: "POST",
 			url: "<?php echo base_url('Katalog/filter'); ?>",
 			data: {id_kategori: id_kategori, urutkan: urutkan, kata_kunci:kata_kunci},
-			
+			beforeSend : function() {
+                          $(".post_submitting").show().html('<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>');
+                    },
 			success : function(data){
 				// MyTable.fnDestroy();
 				$('#daftar_produk').html(data);
+				$(".post_submitting").fadeOut(1000);
+				
 				// refresh();
 			},
 			error: function(data){
@@ -61,10 +65,13 @@ $(document).ready(function(){
 			method: "POST",
 			url: "<?php echo base_url('Katalog/filter'); ?>",
 			data: {id_kategori: id_kategori, urutkan: urutkan, kata_kunci:kata_kunci},
-			
+			 beforeSend : function() {
+                          $(".post_submitting").show().html('<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>');
+                    },
 			success : function(data){
 				// MyTable.fnDestroy();
 				$('#daftar_produk').html(data);
+				$(".post_submitting").fadeOut(1000);
 				// refresh();
 			},
 			error: function(data){

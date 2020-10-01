@@ -52,8 +52,8 @@
 
 		<section class="ftco-section bg-light">
     	<div class="container-fluid">
-            
-    		<div class="row" id="daftar_produk">
+          <div class="post_submitting"></div>
+    		<div class="row " id="daftar_produk">
                 <?php if($data_produk == NULL) {?>
 
                               <div class="ftco-section container d-flex justify-content-center py-5">
