@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="<?= base_url()?>assets/e-commerce/css/style.css">
     <link rel="stylesheet" href="<?= base_url()?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
     
+    <link rel="stylesheet" href="<?= base_url()?>assets/e-commerce/css/css-loader.css">
+   	<link rel="stylesheet" href="<?= base_url()?>assets/e-commerce/css/loader-double.css">
 
     <link rel="shortcut icon" href="<?= base_url(); ?>assets/dist/img/Rinba_Official.png" />
 
